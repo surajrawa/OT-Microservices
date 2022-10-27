@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: empms-frontend
+  name: empms-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-frontend
+  template:
+    metadata:
+      labels:
+        app: empms-frontend
+    spec:
+      containers:
+      - image: opstree/empms-frontend:1.0
+        imagePullPolicy: Always
+        name: empms-frontend
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: empms-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-frontend
+  ports:
+  - protocol: TCP
+    port: 3000
