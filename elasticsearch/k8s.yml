@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: empms-es
+  name: empms-es
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-es
+  template:
+    metadata:
+      labels:
+        app: empms-es
+    spec:
+      containers:
+      - image: opstree/empms-es:1.0
+        imagePullPolicy: Always
+        name: empms-es
+        ports:
+        - containerPort: 9200
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: empms-es
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-es
+  ports:
+  - protocol: TCP
+    port: 9200
