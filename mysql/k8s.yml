@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-db
+  name: empms-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-db
+  template:
+    metadata:
+      labels:
+        app: empms-db
+    spec:
+      containers:
+      - image: opstree/empms-db:1.0
+        imagePullPolicy: Always
+        name: empms-db
+        ports:
+        - containerPort: 3306
+        resources:
+          limits:
+            cpu: 600m
+            memory: 600Mi
+          requests:
+            cpu: 600m
+            memory: 600Mi
+        env:
+          - name: MYSQL_DATABASE
+            value: employeedb
+          - name: MYSQL_USER
+            value: suraj
+          - name: MYSQL_PASSWORD
+            value: password
+          - name: MYSQL_ROOT_PASSWORD
+            value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: empms-db
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-db
+  ports:
+  - protocol: TCP
+    port: 3306
