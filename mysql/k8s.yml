@@ -16,7 +16,7 @@ spec:
         app: empms-db
     spec:
       containers:
-      - image: opstree/empms-db:1.0
+      - image: 276391883698.dkr.ecr.us-east-1.amazonaws.com/ot-ms:db
         imagePullPolicy: Always
         name: empms-db
         ports:
