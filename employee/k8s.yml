@@ -16,7 +16,7 @@ spec:
         app: empms-employee
     spec:
       containers:
-      - image: opstree/empms-employee:1.0
+      - image: 276391883698.dkr.ecr.us-east-1.amazonaws.com/ot-ms:employee
         imagePullPolicy: Always
         name: empms-employee
         ports:
