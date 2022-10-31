@@ -4,7 +4,7 @@ LABEL application="attendance" \
       stack="OT-Microservices"
 
 WORKDIR /attendance/
-COPY requirements.txt /attendance/
+COPY attendance/requirements.txt /attendance/
 RUN pip3 install -r requirements.txt
 
 COPY attendance_api.py /attendance/
