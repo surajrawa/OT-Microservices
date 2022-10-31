@@ -4,4 +4,4 @@ ENV ES_JAVA_OPTS "-Xms512m -Xmx512m"
 
 ENV ELASTIC_PASSWORD "elastic"
 
-COPY elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+COPY ./elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
