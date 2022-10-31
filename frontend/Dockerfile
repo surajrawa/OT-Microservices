@@ -2,7 +2,7 @@ FROM node:lts-stretch-slim
 
 MAINTAINER Opstree Solutions
 
-COPY frontend/. /app
+COPY . /app
 
 WORKDIR /app/
 
