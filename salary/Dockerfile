@@ -1,8 +1,8 @@
 FROM maven:latest as builder
 MAINTAINER Opstree Solutions
 WORKDIR /java/
-COPY salary/pom.xml /java/
-COPY salary/src /java/src/
+COPY pom.xml /java/
+COPY src /java/src/
 RUN mvn clean package
 
 FROM alpine:latest
