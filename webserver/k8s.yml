@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: empms-webserver
-        image: opstree/empms-webserver:1.0
+        image: 276391883698.dkr.ecr.us-east-1.amazonaws.com/ot-ms:webserver
+        imagePullPolicy: Always
         ports:
           - containerPort: 80
 ---
@@ -28,9 +29,9 @@ metadata:
 spec:
   selector:
     app: empms-webserver
-  type: NodePort
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 30444
+#     nodePort: 30444
