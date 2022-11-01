@@ -1,0 +1,2 @@
+IMAGES=(opstree/empms-es:1.0 opstree/empms-attendance:1.0)
+MAX_ALLOWED_IMAGE_SIZE=9000000000 #(size is in bytes)
