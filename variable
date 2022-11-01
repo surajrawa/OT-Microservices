@@ -29,3 +29,4 @@ ElasticSearch_manifest=elasticsearch/k8s.yml
 Employee_manifest=employee/k8s.yml
 Salary_manifest=salary/k8s.yml
 Git_url=https://github.com/surajrawa/OT-Microservices.git
+git_branch=master
