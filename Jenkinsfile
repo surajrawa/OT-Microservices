@@ -1,3 +1,4 @@
+// def config = [:]
 pipeline {
     agent any
 
@@ -5,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                def config = readProperties file: 'variable'
+                config = readProperties , file: 'variable'
                 git branch: "$config.git_branch" , url: "$config.Git_url"
             }
         }
