@@ -1,5 +1,5 @@
 #!/bin/bash
-source variable
+source function
 
 for name in ${!IMAGES[@]}
 do
