@@ -6,6 +6,11 @@ metadata:
   name: empms-es
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: empms-es
@@ -20,7 +25,24 @@ spec:
         name: empms-es
         ports:
         - containerPort: 9200
-        
+        readinessProbe:
+          httpGet:
+            path: /hello
+            port: 9200
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /hello
+            port: 9200
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /hello
+            port: 9200
+          failureThreshold: 30
+          periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
