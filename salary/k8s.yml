@@ -7,6 +7,11 @@ metadata:
   name: empms-salary
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: empms-salary
@@ -22,6 +27,24 @@ spec:
         name: empms-salary
         ports:
         - containerPort: 8082
+        readinessProbe:
+            httpGet:
+              path: /hello
+              port: 8082
+            initialDelaySeconds: 15
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /hello
+            port: 8082
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /hello
+            port: 8082
+          failureThreshold: 30
+          periodSeconds: 10
 ---        
 apiVersion: v1
 kind: Service
