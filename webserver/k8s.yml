@@ -7,6 +7,11 @@ metadata:
     app: empms-webserver
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: empms-webserver
@@ -21,6 +26,24 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 80
+        readinessProbe:
+            httpGet:
+              path: /hello
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /hello
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /hello
+            port: 80
+          failureThreshold: 30
+          periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
@@ -34,4 +57,3 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-#     nodePort: 30444
