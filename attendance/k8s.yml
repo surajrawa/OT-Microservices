@@ -26,24 +26,11 @@ spec:
         name: empms-attendance
         ports:
         - containerPort: 8081
-        readinessProbe:
-          httpGet:
-            path: /hello
-            port: 8081
-          initialDelaySeconds: 15
-          periodSeconds: 10
         livenessProbe:
-          httpGet:
-            path: /hello
+          tcpSocket:
             port: 8081
           initialDelaySeconds: 15
-          periodSeconds: 10
-        startupProbe:
-          httpGet:
-            path: /hello
-            port: 8081
-          failureThreshold: 30
-          periodSeconds: 10       
+          periodSeconds: 10    
 ---
 apiVersion: v1
 kind: Service
