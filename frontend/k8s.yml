@@ -26,23 +26,10 @@ spec:
         name: empms-frontend
         ports:
         - containerPort: 3000
-        readinessProbe:
-            httpGet:
-              path: /hello
-              port: 3000
-            initialDelaySeconds: 15
-            periodSeconds: 10
         livenessProbe:
-          httpGet:
-            path: /hello
+          tcpSocket:
             port: 3000
           initialDelaySeconds: 15
-          periodSeconds: 10
-        startupProbe:
-          httpGet:
-            path: /hello
-            port: 3000
-          failureThreshold: 30
           periodSeconds: 10
 ---
 apiVersion: v1
