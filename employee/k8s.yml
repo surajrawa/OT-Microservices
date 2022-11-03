@@ -26,23 +26,10 @@ spec:
         name: empms-employee
         ports:
         - containerPort: 8083
-        readinessProbe:
-          httpGet:
-            path: /hello
-            port: 8083
-          initialDelaySeconds: 15
-          periodSeconds: 10
         livenessProbe:
-          httpGet:
-            path: /hello
+          tcpSocket:
             port: 8083
           initialDelaySeconds: 15
-          periodSeconds: 10
-        startupProbe:
-          httpGet:
-            path: /hello
-            port: 8083
-          failureThreshold: 30
           periodSeconds: 10
 ---
 apiVersion: v1
