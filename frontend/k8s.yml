@@ -10,6 +10,11 @@ spec:
   selector:
     matchLabels:
       app: empms-frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -21,7 +26,24 @@ spec:
         name: empms-frontend
         ports:
         - containerPort: 3000
-
+        readinessProbe:
+            httpGet:
+              path: /hello
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /hello
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /hello
+            port: 3000
+          failureThreshold: 30
+          periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
