@@ -1,4 +1,5 @@
-FROM python:latest
+# FROM python:latest
+FROM python:3.12.0a6
 # MAINTAINER OpsTree Solutions
 LABEL maintainer="OpsTree Solutions" \
       application="attendance" \
