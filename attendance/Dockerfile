@@ -1,6 +1,7 @@
 FROM python:latest
-MAINTAINER OpsTree Solutions
-LABEL application="attendance" \
+# MAINTAINER OpsTree Solutions
+LABEL maintainer="OpsTree Solutions" \
+      application="attendance" \
       stack="OT-Microservices"
 
 WORKDIR /attendance/
